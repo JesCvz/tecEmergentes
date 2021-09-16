@@ -39,14 +39,8 @@ export const SideBar = () => {
     const classes = useSyles();
     let history = useHistory();
 
-    const handleClickHistory = (e) => {
-        const routeName = e.target.outerText;
-        
-        const filteredRoute = Routes.filter((route, index) =>{
-            return route.name === routeName;
-        })
-
-        history.push(filteredRoute[0].route);
+    const handleClickHistory = (args) => {
+        history.push(args); 
     }
     const handleClick = () => {
         setOpen(!open);
@@ -87,7 +81,7 @@ export const SideBar = () => {
             <List>
                 {Routes.map((route, index) => {
                     return(
-                        <ListItem id={route.name} button key={route.name} onClick={handleClickHistory}>
+                        <ListItem id={route.name} button key={route.name} onClick={() => {handleClickHistory(route.route)}}>
                             <ListItemIcon children={<route.icon/>}/>
                             <ListItemText primary={route.name} />
                         </ListItem>
